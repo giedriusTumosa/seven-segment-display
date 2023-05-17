@@ -1,0 +1,139 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --clr-theme: #272727;
+}
+
+body {
+  background: #000000;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--clr-theme);
+  padding: 1rem;
+}
+
+.userInputForm {
+  margin-bottom: 0.8rem;
+}
+.userInputForm label,
+.userInputForm input {
+  display: block;
+}
+.userInputForm label {
+  color: #fff;
+  margin-bottom: 0.7rem;
+}
+.userInputForm input {
+  height: 2rem;
+  border: unset;
+  padding: unset;
+  padding-inline-start: 0.5rem;
+  font-size: 1.2rem;
+}
+.userInputForm .inputErrorMessage {
+  height: 1.2em;
+}
+
+.screen {
+  width: min(600px, 100%);
+  display: flex;
+  justify-content: center;
+}
+
+.display {
+  width: 180px;
+  height: 250px;
+  position: relative;
+}
+
+.segment {
+  height: 15px;
+  width: 100px;
+  background-color: var(--clr-theme);
+  font-size: 0.8rem;
+  display: grid;
+  place-content: center;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.mainSegmentsWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 130px;
+  position: relative;
+}
+
+.dotSegmentWrapper {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.inputErrorMessage {
+  margin-top: 0.5rem;
+  color: #ffff00;
+}
+
+#seg_dp {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+#seg_f,
+#seg_b,
+#seg_e,
+#seg_c {
+  height: 100px;
+  width: 15px;
+  position: absolute;
+}
+
+#seg_f {
+  top: 15px;
+  left: 0;
+}
+
+#seg_c {
+  bottom: 15px;
+  right: 0;
+}
+
+#seg_e {
+  bottom: 15px;
+  left: 0;
+}
+
+#seg_b {
+  top: 15px;
+  right: 0;
+}
+
+#seg_a,
+#seg_g,
+#seg_d {
+  align-self: center;
+}
+
+.active {
+  background-color: #ff2020;
+}
+
+/*# sourceMappingURL=main.css.map */
