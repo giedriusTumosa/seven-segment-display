@@ -10,7 +10,7 @@ export default class Display {
       new Segment("seg_e"),
       new Segment("seg_f"),
       new Segment("seg_d"),
-      new Segment("seg_dp"),
+      new Segment("seg_p"),
     ];
     this.segmentCode = "";
   }

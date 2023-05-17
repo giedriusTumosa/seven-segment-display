@@ -9,6 +9,7 @@ export const charLib = [
   { char: "7", segmentCode: "abc" },
   { char: "8", segmentCode: "abcdefg" },
   { char: "9", segmentCode: "abcdfg" },
+  { char: ".", segmentCode: "p" },
 ];
 
 export function segmentCodeSearch(charToSearch) {
