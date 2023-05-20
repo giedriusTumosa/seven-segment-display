@@ -12,7 +12,16 @@ export default class Display {
       new Segment("seg_d"),
       new Segment("seg_p"),
     ];
-    this.segmentCode = "";
+    this._segmentCode = "";
+  }
+
+  set segmentCode(segmentCode) {
+    this._segmentCode = segmentCode;
+    this.render();
+  }
+
+  get segmentCode() {
+    return this._segmentCode;
   }
 
   render() {
@@ -39,7 +48,7 @@ export default class Display {
     return this.display;
   }
   segmentSwitcher() {
-    const segmentCodeToArray = this.segmentCode?.split("");
+    const segmentCodeToArray = this._segmentCode?.split("");
 
     this.segments.forEach((segment) => {
       if (segmentCodeToArray?.includes(segment.segmentName.slice(4))) {

@@ -4,7 +4,8 @@
   box-sizing: border-box;
 }
 :root {
-  --clr-theme: #272727;
+  --clr-theme: #2727276c;
+  --clr-theme-200: #585858;
 }
 
 body {
@@ -21,7 +22,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid var(--clr-theme);
+  border: 1px solid var(--clr-theme-200);
   padding: 1rem;
 }
 
@@ -49,14 +50,15 @@ body {
 }
 
 .screen {
-  width: min(600px, 100%);
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 .display {
-  width: 180px;
+  width: 160px;
   height: 250px;
   position: relative;
+  transform: scale(0.2);
 }
 
 .segment {

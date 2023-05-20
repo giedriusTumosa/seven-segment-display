@@ -3,6 +3,7 @@ import { screen, userInput } from "../main.js";
 export default class UserInput {
   constructor() {
     this.inputTouched = false;
+    this.inputMaxLength = screen.displays.length;
   }
   render() {
     this.form = document.createElement("form");
@@ -17,7 +18,7 @@ export default class UserInput {
     this.inputText.setAttribute("type", "text");
     this.inputText.setAttribute("id", "userInput");
     this.inputText.setAttribute("name", "userInput");
-    this.inputText.setAttribute("maxlength", "1");
+    this.inputText.setAttribute("maxlength", this.inputMaxLength);
 
     this.label = document.createElement("label");
     this.label.setAttribute("for", "userInput");
