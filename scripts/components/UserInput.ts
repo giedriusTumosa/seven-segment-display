@@ -1,6 +1,15 @@
 import { screen, userInput } from "../main.js";
 
 export default class UserInput {
+  inputTouched: boolean;
+  inputMaxLength: number;
+  form: HTMLFormElement;
+  textInputWrapper: HTMLElement;
+  inputText: HTMLInputElement;
+  label: HTMLLabelElement;
+  labelText: Text;
+  errorMessage: HTMLElement;
+
   constructor() {
     this.inputTouched = false;
     this.inputMaxLength = screen.displays.length;
@@ -18,7 +27,7 @@ export default class UserInput {
     this.inputText.setAttribute("type", "text");
     this.inputText.setAttribute("id", "userInput");
     this.inputText.setAttribute("name", "userInput");
-    this.inputText.setAttribute("maxlength", this.inputMaxLength);
+    this.inputText.setAttribute("maxlength", this.inputMaxLength.toString());
 
     this.label = document.createElement("label");
     this.label.setAttribute("for", "userInput");
@@ -32,8 +41,16 @@ export default class UserInput {
 
     // Event listeners
 
+    this.inputText.addEventListener("keydown", (e) => {
+      const oneDotAlreadyDisplayed =
+        this.inputText.value.split("").filter((char) => char === ".").length >=
+        1;
+
+      e.key === "." && oneDotAlreadyDisplayed && e.preventDefault();
+    });
+
     this.inputText.addEventListener("input", (e) => {
-      screen.input = e.target.value;
+      screen.input = (e.target as HTMLInputElement).value;
     });
     this.inputText.addEventListener("focus", (e) => {
       this.inputTouched = true;

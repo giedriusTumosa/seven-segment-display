@@ -1,19 +1,26 @@
 export default class Segment {
+  segmentName: string;
+  isOn: boolean;
+  segment: HTMLElement;
+  textHolder: HTMLElement;
+
   constructor(segmentName) {
     this.segmentName = segmentName;
     this.isOn = false;
   }
-  switchOn() {
+  switchOn(): void {
     this.isOn = true;
+    this.render();
   }
-  switchOff() {
+  switchOff(): void {
     this.isOn = false;
+    this.render();
   }
-  get state() {
+  get state(): boolean {
     return this.isOn;
   }
 
-  render() {
+  render(): HTMLElement {
     this.segment = document.createElement("div");
     this.segment.setAttribute("class", "segment");
     this.segment.classList.add(`${!this.isOn ? "inActive" : "active"}`);
@@ -22,7 +29,6 @@ export default class Segment {
     this.textHolder.append(
       document.createTextNode(this.segmentName[this.segmentName.length - 1])
     );
-
     this.segment.append(this.textHolder);
 
     return this.segment;
