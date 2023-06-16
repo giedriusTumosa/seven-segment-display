@@ -1,12 +1,6 @@
-import Segment from "./Segment.js";
+import Segment from "./Segment";
 
-interface CharLib {
-  [key: string]: string;
-}
-
-type CharLibKey = keyof CharLib;
-
-const charLib: CharLib = {
+const segmentMap = {
   0: "abcdef",
   1: "bc",
   2: "abdeg",
@@ -19,15 +13,18 @@ const charLib: CharLib = {
   9: "abcdfg",
   ".": "p",
   ",": "p",
+  " ": "",
 };
+
+export type Char = keyof typeof segmentMap;
 
 export default class Display {
   segments: Segment[];
-  _charToDisplay: CharLibKey;
-  display: HTMLElement;
-  mainSegmentsWrapper: HTMLElement;
-  dotSegmentWrapper: HTMLElement;
-  segment: HTMLElement;
+  _charToDisplay: Char;
+  display: HTMLElement | undefined;
+  mainSegmentsWrapper: HTMLElement | undefined;
+  dotSegmentWrapper: HTMLElement | undefined;
+  segment: HTMLElement | undefined;
 
   constructor() {
     this.segments = [
@@ -40,10 +37,10 @@ export default class Display {
       new Segment("seg_d"),
       new Segment("seg_p"),
     ];
-    this._charToDisplay = "";
+    this._charToDisplay = " ";
   }
 
-  set charToDisplay(char: CharLibKey) {
+  set charToDisplay(char: Char) {
     this._charToDisplay = char;
     this.render();
   }
@@ -61,9 +58,9 @@ export default class Display {
 
     this.segments.forEach((segment, index) => {
       if (index === this.segments.length - 1) {
-        this.dotSegmentWrapper.append(segment.render());
+        this.dotSegmentWrapper!.append(segment.render());
       } else {
-        this.mainSegmentsWrapper.append(segment.render());
+        this.mainSegmentsWrapper!.append(segment.render());
       }
     });
     this.display.append(this.mainSegmentsWrapper, this.dotSegmentWrapper);
@@ -71,7 +68,7 @@ export default class Display {
   }
 
   segmentSwitcher() {
-    const segmentCodeToArray = charLib[this._charToDisplay]?.split("");
+    const segmentCodeToArray = segmentMap[this._charToDisplay]?.split("");
     this.segments.forEach((segment) => {
       if (segmentCodeToArray?.includes(segment.segmentName.slice(4))) {
         !segment.isOn && segment.switchOn();
@@ -81,7 +78,7 @@ export default class Display {
     });
   }
 
-  switchDotSegment(switchOn) {
+  switchDotSegment(switchOn: boolean) {
     const dotSegment: Segment | undefined = this.segments.find(
       (segment) => segment.segmentName === "seg_p"
     );
@@ -98,7 +95,7 @@ export default class Display {
       document.createTextNode(segmentName[segmentName.length - 1])
     );
 
-    this.segment.append(textHolder);
+    this.segment!.append(textHolder);
 
     return segment;
   }

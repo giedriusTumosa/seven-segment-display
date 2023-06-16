@@ -1,13 +1,14 @@
 export default class Segment {
   segmentName: string;
   isOn: boolean;
-  segment: HTMLElement;
-  textHolder: HTMLElement;
+  segment: HTMLElement | undefined;
+  textHolder: HTMLElement | undefined;
 
-  constructor(segmentName) {
+  constructor(segmentName: string) {
     this.segmentName = segmentName;
     this.isOn = false;
   }
+
   switchOn(): void {
     this.isOn = true;
     this.render();

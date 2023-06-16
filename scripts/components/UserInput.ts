@@ -1,18 +1,18 @@
-import { screen, userInput } from "../main.js";
+import { screen } from "../main";
 
 export default class UserInput {
   inputTouched: boolean;
-  inputMaxLength: number;
-  form: HTMLFormElement;
-  textInputWrapper: HTMLElement;
-  inputText: HTMLInputElement;
-  label: HTMLLabelElement;
-  labelText: Text;
-  errorMessage: HTMLElement;
+  inputMaxLength: string;
+  form: HTMLFormElement | undefined;
+  textInputWrapper: HTMLElement | undefined;
+  inputText: HTMLInputElement | undefined;
+  label: HTMLLabelElement | undefined;
+  labelText: Text | undefined;
+  errorMessage: HTMLElement | undefined;
 
   constructor() {
     this.inputTouched = false;
-    this.inputMaxLength = screen.displays.length;
+    this.inputMaxLength = screen.displays.length.toString();
   }
   render() {
     this.form = document.createElement("form");
@@ -27,7 +27,7 @@ export default class UserInput {
     this.inputText.setAttribute("type", "text");
     this.inputText.setAttribute("id", "userInput");
     this.inputText.setAttribute("name", "userInput");
-    this.inputText.setAttribute("maxlength", this.inputMaxLength.toString());
+    this.inputText.setAttribute("maxlength", this.inputMaxLength);
 
     this.label = document.createElement("label");
     this.label.setAttribute("for", "userInput");
@@ -43,7 +43,7 @@ export default class UserInput {
 
     this.inputText.addEventListener("keydown", (e) => {
       const oneDotAlreadyDisplayed =
-        this.inputText.value.split("").filter((char) => char === ".").length >=
+        this.inputText!.value.split("").filter((char) => char === ".").length >=
         1;
 
       e.key === "." && oneDotAlreadyDisplayed && e.preventDefault();

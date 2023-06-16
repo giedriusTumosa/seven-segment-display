@@ -1,0 +1,14 @@
+{
+  "name": "seven-segment-display",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "watch": "tsup --watch",
+    "build": "tsup"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tsup": "6.7.0"
+  }
+}

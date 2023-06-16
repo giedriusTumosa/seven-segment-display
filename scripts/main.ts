@@ -1,5 +1,5 @@
-import Screen from "./components/Screen.js";
-import UserInput from "./components/UserInput.js";
+import Screen from "./components/Screen";
+import UserInput from "./components/UserInput";
 
 const app = document.querySelector("#app");
 const screen = new Screen(4);
